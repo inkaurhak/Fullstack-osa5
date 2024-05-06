@@ -5,7 +5,7 @@ import Remove from './Remove'
 const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
   const [infoVisible, setInfoVisible] = useState(false)
 
-  const hideWhenVisible = { 
+  const hideWhenVisible = {
     display: infoVisible ? 'none' : '',
     paddingTop: 10,
     paddingLeft: 2,
@@ -13,7 +13,7 @@ const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
     borderWidth: 1,
     marginBottom: 5
   }
-  const showWhenVisible = { 
+  const showWhenVisible = {
     display: infoVisible ? '' : 'none' ,
     paddingTop: 10,
     paddingLeft: 2,
@@ -24,7 +24,7 @@ const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
 
   const addLike = (id) => {
     const blog = blogs.find(b => b.id === id)
-    const changedBlog = { ...blog, likes: blog.likes += 1}
+    const changedBlog = { ...blog, likes: blog.likes += 1 }
 
     blogService
       .update(id, changedBlog)
@@ -40,31 +40,31 @@ const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
   }
 
   return (
-  <div>
-    <div style={hideWhenVisible}>
-      {blog.title} {blog.author}
-      <button onClick={() => setInfoVisible(true)}>view</button>
-    </div>
-    <div style={showWhenVisible} >
-      <div>
+    <div>
+      <div style={hideWhenVisible}>
         {blog.title} {blog.author}
-        <button onClick={() => setInfoVisible(false)}>hide</button>
+        <button onClick={() => setInfoVisible(true)}>view</button>
       </div>
-      <a href={blog.url}>{blog.url}</a>
-      <div>
-        {blog.likes}
-        <button onClick={() => addLike(blog.id)}>like</button>
+      <div style={showWhenVisible} >
+        <div>
+          {blog.title} {blog.author}
+          <button onClick={() => setInfoVisible(false)}>hide</button>
+        </div>
+        <a href={blog.url}>{blog.url}</a>
+        <div>
+          {blog.likes}
+          <button onClick={() => addLike(blog.id)}>like</button>
+        </div>
+        <div>{blog.user.name}</div>
+        <Remove
+          blog={blog}
+          blogs={blogs}
+          setBlogs={setBlogs}
+          setMessage={setMessage}
+          user={user}
+        />
       </div>
-      <div>{blog.user.name}</div>
-      <Remove 
-        blog={blog} 
-        blogs={blogs} 
-        setBlogs={setBlogs} 
-        setMessage={setMessage}
-        user={user}
-      />
     </div>
-  </div>  
   )
 }
 
