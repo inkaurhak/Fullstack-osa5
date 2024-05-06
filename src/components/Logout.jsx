@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const Logout = ({ user, setUser }) => {
 
   const handleLogout = (event) => {
@@ -17,6 +19,11 @@ const Logout = ({ user, setUser }) => {
       </form>
     </div>
   )
+}
+
+Logout.propTypes = {
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired
 }
 
 export default Logout

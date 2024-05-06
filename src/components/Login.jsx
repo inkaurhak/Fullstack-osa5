@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import loginService from '../services/login'
 import blogService from '../services/blogs'
+import PropTypes from 'prop-types'
 
 const Login = ({ setUser, setErrorMessage }) => {
 
@@ -49,6 +50,11 @@ const Login = ({ setUser, setErrorMessage }) => {
       <button type="submit">login</button>
     </form>
   )
+}
+
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setErrorMessage: PropTypes.func.isRequired
 }
 
 export default Login

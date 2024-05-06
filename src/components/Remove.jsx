@@ -1,4 +1,5 @@
 import blogService from '../services/blogs'
+import PropTypes from 'prop-types'
 
 const Remove = ({ blog, blogs, setBlogs, setMessage, user }) => {
 
@@ -26,6 +27,14 @@ const Remove = ({ blog, blogs, setBlogs, setMessage, user }) => {
       </div>
     )
   }
+}
+
+Remove.propTypes = {
+  blog: PropTypes.object.isRequired,
+  blogs: PropTypes.array.isRequired,
+  setBlogs: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 }
 
 export default Remove
