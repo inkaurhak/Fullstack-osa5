@@ -31,8 +31,8 @@ describe.only('when there is initially some blogs saved', () => {
   
     const keys = response.body.map(e => Object.keys(e))
     keys.forEach(key => {
-      assert.strictEqual(key.includes("id"), true)
-      assert.strictEqual(key.includes("_id"), false)
+      assert.strictEqual(key.includes('id'), true)
+      assert.strictEqual(key.includes('_id'), false)
     })
   })
 })
@@ -41,9 +41,9 @@ describe('adding new blogs', () => {
   // korjattava testi! lisää login
   test('a blog can be added', async () => {
     const newBlog = {
-      title: "First class tests",
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll",
+      title: 'First class tests',
+      author: 'Robert C. Martin',
+      url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
       likes: 10
     }
   
@@ -56,7 +56,7 @@ describe('adding new blogs', () => {
     const response = await api.get('/api/blogs')
     const contents = response.body.map(r => r.title)
     assert.strictEqual(response.body.length, helper.initialBlogs.length + 1)
-    assert(contents.includes("First class tests"))
+    assert(contents.includes('First class tests'))
   })
 
   test('blog can not be added if there is no token', async () => {
@@ -66,9 +66,9 @@ describe('adding new blogs', () => {
   // korjattava testi
   test('likes is 0 if it is not given a value', async () => {
     const newBlog = {
-      title: "First class tests",
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll"
+      title: 'First class tests',
+      author: 'Robert C. Martin',
+      url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll'
     }
   
     await api
@@ -80,7 +80,7 @@ describe('adding new blogs', () => {
     const contents = response.body.map(r => r)
       
     contents.forEach(b => {
-      if (b.title === "First class tests") {
+      if (b.title === 'First class tests') {
         assert.strictEqual(b.likes, 0)
       }
     })
@@ -90,14 +90,14 @@ describe('adding new blogs', () => {
 
   test('if blog has no title or url, it returns 400', async () => {
     const blogWithoutTitle = {
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll",
+      author: 'Robert C. Martin',
+      url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
       likes: 10
     }
   
     const blogWithoutUrl = {
-      title: "TDD harms architecture",
-      author: "Robert C. Martin",
+      title: 'TDD harms architecture',
+      author: 'Robert C. Martin',
       likes: 0,
     }
   

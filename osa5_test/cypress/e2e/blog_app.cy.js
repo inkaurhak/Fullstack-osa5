@@ -91,7 +91,7 @@ describe('Blog app ', function() {
         cy.contains('React patterns Michael Chan').should('not.exist')
       })
 
-      it('remove button is only seen by the user that added it', function() {
+      it('remove button is only seen by the user that added the blog', function() {
         cy.get('#logout').click()
         cy.login({ username: 'ethanp', password: 'salasana'})
 
