@@ -49,6 +49,23 @@ const App = () => {
       })
   }
 
+  const addLike = (id) => {
+    const blog = blogs.find(b => b.id === id)
+    const changedBlog = { ...blog, likes: blog.likes += 1 }
+
+    blogService
+      .update(id, changedBlog)
+      .then(returnedBlog => {
+        setBlogs(blog => blog.id !== id ? blog: returnedBlog)
+      })
+      .then(error => {
+        setMessage(`you liked ${blog.title}`)
+        setTimeout(() => {
+          setMessage(null)
+        }, 3000)
+      })
+  }
+
   if (user === null) {
     return (
       <div>
@@ -83,6 +100,7 @@ const App = () => {
           setBlogs={setBlogs}
           setMessage={setMessage}
           user={user}
+          addLike={addLike}
         />
       )}
 

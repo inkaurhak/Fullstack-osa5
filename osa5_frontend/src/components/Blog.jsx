@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import blogService from '../services/blogs'
 import Remove from './Remove'
 import PropTypes from 'prop-types'
 
-const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
+const Blog = ({ blog, blogs, setBlogs, setMessage, user, addLike }) => {
   const [infoVisible, setInfoVisible] = useState(false)
 
   const hideWhenVisible = {
@@ -21,23 +20,6 @@ const Blog = ({ blog, blogs, setBlogs, setMessage, user }) => {
     border: 'solid',
     borderWidth: 1,
     marginBottom: 5
-  }
-
-  const addLike = (id) => {
-    const blog = blogs.find(b => b.id === id)
-    const changedBlog = { ...blog, likes: blog.likes += 1 }
-
-    blogService
-      .update(id, changedBlog)
-      .then(returnedBlog => {
-        setBlogs(blog => blog.id !== id ? blog: returnedBlog)
-      })
-      .then(error => {
-        setMessage(`you liked ${blog.title}`)
-        setTimeout(() => {
-          setMessage(null)
-        }, 3000)
-      })
   }
 
   if (infoVisible) {

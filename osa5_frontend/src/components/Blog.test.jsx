@@ -74,9 +74,9 @@ test('clicking like button twice calls event handle twice', async () => {
     id: '6635f33c449a782e583595bb'
   }
 
-  const handleMock = vi.fn()
+  const mockHandler = vi.fn()
 
-  render(<Blog blog={blog} blogs={[blog]} user={initialUser}/>)
+  render(<Blog blog={blog} blogs={[blog]} user={initialUser} addLike={mockHandler}/>)
 
   const user = userEvent.setup()
   const button = screen.getByText('view')
@@ -85,4 +85,6 @@ test('clicking like button twice calls event handle twice', async () => {
   const like = screen.getByText('like')
   await user.click(like)
   await user.click(like)
+
+  expect(mockHandler.mock.calls).toHaveLength(2)
 })
